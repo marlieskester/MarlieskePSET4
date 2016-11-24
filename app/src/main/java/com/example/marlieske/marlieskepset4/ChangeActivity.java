@@ -5,28 +5,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class ChangeActivity extends AppCompatActivity {
     EditText ETNew;
+    String myToDo;
+    databaseHelper helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change);
+        Intent toChange = getIntent();
+        myToDo = toChange.getStringExtra("item");
         // afmaken: intent
-        ETNew = (EditText) findViewById(R.id.ETNew)
-        ETNew.setText();
+        ETNew = (EditText) findViewById(R.id.ETNew);
+        ETNew.setText(myToDo);
     }
 
     public void save(View view) {
-        String addedToDo = ETNew.getText().toString();
+        MainActivity.Items item = null;
+        item.todo = ETNew.getText().toString();
         view.getId();
-        databaseHelper.update(_id, addedToDo);
+        helper.update(item);
         toHome();
         finish();
     }
 
     public void remove(View view) {
-        databaseHelper.delete(view.getId());
+        helper.delete(view.getId());
         toHome();
         finish();
     }

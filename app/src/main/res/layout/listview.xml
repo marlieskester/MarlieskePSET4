@@ -4,15 +4,26 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="177dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <CheckBox
-        android:text="CheckBox"
-        android:layout_width="28dp"
-        android:layout_height="17dp"
-        android:id="@+id/checkBox" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:onClick="checkBox"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox2" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="156dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/TVItem"
+            android:layout_alignBaseline="@+id/checkBox2"
+            android:layout_alignBottom="@+id/checkBox2"
+            android:layout_toRightOf="@+id/checkBox2"
+            android:layout_toEndOf="@+id/checkBox2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+    </RelativeLayout>
+
 </LinearLayout>

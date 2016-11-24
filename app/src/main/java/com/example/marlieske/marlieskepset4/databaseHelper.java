@@ -28,7 +28,7 @@ public class databaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "CREATE TABLE " + TABLE + " ( _i INTEGER PRIMARY KEY AUTOINCREMENT, " + todo_id + " TEXT, " + done_id + "TEXT)";
+        String CREATE_TABLE = "CREATE TABLE " + TABLE + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " + todo_id + " TEXT, " + done_id + "TEXT)";
         db.execSQL(CREATE_TABLE);
     }
 
@@ -65,18 +65,21 @@ public class databaseHelper extends SQLiteOpenHelper{
         return myList;
     }
 
+    public void getID (MainActivity.Items item) {
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT _id FROM " + TABLE + "WHERE " + todo_id + " equals " + item.todo;
+    }
+
     public void update (MainActivity.Items item) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(todo_id, item.todo);
         values.put(done_id, item.done);
-        // nog doen
-        db.update(TABLE, values,);
+        db.update(TABLE, values, _ID, null);
     }
 
     public void delete(int id) {
         SQLiteDatabase db = getWritableDatabase();
-        //afmaken
-        db.delete(TABLE, );
+        db.delete(TABLE, _ID, null);
     }
 }
