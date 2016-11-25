@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <CheckBox
             android:layout_width="wrap_content"
-            android:onClick="checkBox"
             android:layout_height="wrap_content"
             android:id="@+id/checkBox2" />
 
         <TextView
-            android:text="TextView"
             android:layout_width="156dp"
             android:layout_height="wrap_content"
             android:id="@+id/TVItem"
@@ -24,6 +18,5 @@
             android:layout_toRightOf="@+id/checkBox2"
             android:layout_toEndOf="@+id/checkBox2"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

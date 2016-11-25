@@ -58,16 +58,18 @@ public class databaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = getReadableDatabase();
         String query = "SELECT _id, " + todo_id + ", " + done_id + " FROM " + TABLE;
         ArrayList<HashMap<String, String >> myList = new ArrayList<>();
-        HashMap<String, String> myToDo = new HashMap<>();
+        //HashMap<String, String> myToDo = new HashMap<>();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
+                HashMap<String, String> myToDo = new HashMap<>();
                 myToDo.put("id", cursor.getString(cursor.getColumnIndex(_ID)));
                 myToDo.put("todo", cursor.getString(cursor.getColumnIndex(todo_id)));
                 myToDo.put("done", cursor.getString(cursor.getColumnIndex(done_id)));
+                myList.add(myToDo);
             }
             while (cursor.moveToNext());
-            myList.add(myToDo);
+
         }
         cursor.close();
         db.close();
@@ -75,9 +77,16 @@ public class databaseHelper extends SQLiteOpenHelper{
         return myList;
     }
 
-    public void getID (String todo) {
+    public String getID (String todo) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = "SELECT _id FROM " + TABLE + "WHERE " + todo_id + " equals " + todo;
+        String id = "SELECT _id FROM " + TABLE + "WHERE " + todo_id + " equals " + todo;
+        return id;
+    }
+    public void checkchange (String ID, Boolean done){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(done_id, done);
+        db.update(TABLE, values, _ID, null);
     }
 
     public void update (MainActivity.Items item) {

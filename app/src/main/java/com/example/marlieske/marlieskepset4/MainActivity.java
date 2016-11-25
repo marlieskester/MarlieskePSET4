@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.example.marlieske.marlieskepset4.R.id.ETNew;
+import static com.example.marlieske.marlieskepset4.R.id.TVItem;
 import static com.example.marlieske.marlieskepset4.R.layout.listview;
 import static com.example.marlieske.marlieskepset4.R.string.my_new_to_do;
 
@@ -32,19 +33,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         helper = new databaseHelper(this);
-        //adaptList();
-//        Intent checkChanged = getIntent();
-//        String id = checkChanged.getStringExtra("id");
-//        // helper.getID(item.todo);
-//        item.done = checkChanged.getBooleanExtra("check", isChecked);
-//        helper.update(item);
-        adaptList();
+        adaptList2();
     }
 
-//    private void adaptList() {
-//        listAdapter adapter = null;
-//        Cursor cursor = null;
-//        adapter.myAdapter(listview, this, cursor);
+//    public void checkChanged(String id, Boolean done){
+//        Items check = helper.getItem(id);
+//        check.done = done;
+//        helper.update(check);
 //    }
     public void adaptList() {
         ArrayList<HashMap<String, String>> items = helper.read();
@@ -53,13 +48,18 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "no to-do's to show", Toast.LENGTH_SHORT).show();
         }
         else {
-            Log.d("niet leeg", "items");
             ArrayAdapter<HashMap<String, String>> myAdapter = new ArrayAdapter<HashMap<String, String>>(this, R.layout.dummylistview, items);
             ListView myLV = (ListView) findViewById(R.id.LV);
             myLV.setAdapter(myAdapter);
         }
-
     }
+
+    public void adaptList2(){
+        listAdapter myadapter = new listAdapter(this, R.layout.listview, R.id.TVItem, helper.read());
+        ListView myLV = (ListView) findViewById(R.id.LV);
+        myLV.setAdapter(myadapter);
+    }
+
 
     public class Items{
         String todo;
