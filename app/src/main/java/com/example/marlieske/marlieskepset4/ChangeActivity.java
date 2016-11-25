@@ -17,7 +17,6 @@ public class ChangeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change);
         Intent toChange = getIntent();
         myToDo = toChange.getStringExtra("item");
-        // afmaken: intent
         ETNew = (EditText) findViewById(R.id.ETNew);
         ETNew.setText(myToDo);
     }
@@ -25,17 +24,18 @@ public class ChangeActivity extends AppCompatActivity {
     public void save(View view) {
         MainActivity.Items item = null;
         item.todo = ETNew.getText().toString();
-        view.getId();
+        //String id = helper.getID(myToDo);
         helper.update(item);
         toHome();
         finish();
     }
 
-    public void remove(View view) {
-        helper.delete(view.getId());
-        toHome();
-        finish();
-    }
+//    public void remove(View view) {
+//        String ID = helper.getID(myToDo);
+//        helper.delete(ID);
+//        toHome();
+//        finish();
+//    }
 
     public void toMain(View view) {
         toHome();

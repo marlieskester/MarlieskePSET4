@@ -65,9 +65,9 @@ public class databaseHelper extends SQLiteOpenHelper{
         return myList;
     }
 
-    public void getID (MainActivity.Items item) {
+    public void getID (String todo) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = "SELECT _id FROM " + TABLE + "WHERE " + todo_id + " equals " + item.todo;
+        String query = "SELECT _id FROM " + TABLE + "WHERE " + todo_id + " equals " + todo;
     }
 
     public void update (MainActivity.Items item) {
@@ -78,7 +78,7 @@ public class databaseHelper extends SQLiteOpenHelper{
         db.update(TABLE, values, _ID, null);
     }
 
-    public void delete(int id) {
+    public void delete(String _ID) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE, _ID, null);
     }
