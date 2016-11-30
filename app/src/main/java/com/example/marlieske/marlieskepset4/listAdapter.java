@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,43 +31,47 @@ public class listAdapter extends ArrayAdapter<MainActivity.Items> {
         helper = new databaseHelper(context);
     }
 
-
-    public View getView(final Context context, View convertView, ViewGroup parent) {
+    public void getView(final Context context, CheckBox checkBox) {
         ArrayList<HashMap<String, String>> items = helper.read();
 
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listview, null);
-        }
+//        if (convertView == null) {
+//            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listview, null);
+//        }
 //        MainActivity.Items thisposition = getItem(position);
-        final TextView TVItem = (TextView) convertView.findViewById(R.id.TVItem);
+     //   final TextView TVItem = (TextView) findViewById(R.id.TVItem);
+//        ListView myLV = (ListView) convertView.findViewById(R.id.LV);
+     //   CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.checkBox2);
         HashMap<String, String> map = new HashMap<>();
         for (int i = 0, j = items.size(); i < j; i++) {
             map = items.get(i);
-            TVItem.setText(map.toString());
+            Log.d("items", map.toString());
+            if (checkBox == null) {
+                Log.d("cb", "null");
+            }
+                checkBox.setText(map.get("todo"));
         }
         final String thisItem = map.toString();
-        CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.checkBox2);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 String id = helper.getID(thisItem);
                 helper.checkchange(id, isChecked);
-            }
-        });
-        ListView myLV = (ListView) convertView.findViewById(R.id.LV);
-        myLV.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                String thisItem = TVItem.getText().toString();
-                String ID = helper.getID(thisItem);
-                Intent toChange = new Intent(context, ChangeActivity.class);
-                toChange.putExtra("item", thisItem);
-                context.startActivity(toChange);
-                return true;
+                Log.d("onchceckchange", "check");
             }
         });
 
-        return convertView;
+//        checkBox.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//                String thisItem = (String) parent.getItemAtPosition(position);
+//                Log.d("longclick", "check");
+//                String ID = helper.getID(thisItem);
+//                Intent toChange = new Intent(context, ChangeActivity.class);
+//                toChange.putExtra("item", thisItem);
+//                context.startActivity(toChange);
+//                return true;
+//            }
+//        });
     }
 }
 

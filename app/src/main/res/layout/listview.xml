@@ -7,16 +7,16 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/checkBox2" />
+            android:id="@+id/thisOne" />
 
         <TextView
             android:layout_width="156dp"
             android:layout_height="wrap_content"
             android:id="@+id/TVItem"
-            android:layout_alignBaseline="@+id/checkBox2"
-            android:layout_alignBottom="@+id/checkBox2"
-            android:layout_toRightOf="@+id/checkBox2"
-            android:layout_toEndOf="@+id/checkBox2"
+            android:layout_alignBaseline="@+id/thisOne"
+            android:layout_alignBottom="@+id/thisOne"
+            android:layout_toRightOf="@+id/thisOne"
+            android:layout_toEndOf="@+id/thisOne"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </RelativeLayout>

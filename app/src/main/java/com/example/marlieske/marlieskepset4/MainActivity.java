@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         adaptList2();
     }
 
+
 //    public void checkChanged(String id, Boolean done){
 //        Items check = helper.getItem(id);
 //        check.done = done;
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
     public void adaptList2(){
         listAdapter myadapter = new listAdapter(this, R.layout.listview, R.id.TVItem, helper.read());
         ListView myLV = (ListView) findViewById(R.id.LV);
+        CheckBox checkBox = (CheckBox) findViewById(R.id.)
+        myadapter.getView(this, checkBox);
         myLV.setAdapter(myadapter);
     }
 
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         newItem.done = false;
         helper.create(newItem);
         Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
-        adaptList();
+        adaptList2();
         ETNew.setText("");
         ETNew.setHint("my new to-do");
     }
